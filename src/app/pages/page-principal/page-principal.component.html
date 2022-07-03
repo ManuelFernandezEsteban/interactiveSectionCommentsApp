@@ -1,0 +1,13 @@
+
+
+<!--aqui va el ngfor que cargará todos los comentarios-->
+<ng-container *ngFor="let comment of comments">
+
+    <app-comment [comment]="comment"></app-comment>
+    
+</ng-container>
+
+<!--nuevo comentario recibira el user como input-->
+<app-nuevo-comment>
+    
+</app-nuevo-comment>
