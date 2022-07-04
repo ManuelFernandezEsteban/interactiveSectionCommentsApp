@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentsService } from '../../services/comments.service';
-import { Data } from '../../interfaces/data.interface';
 import { Comment } from '../../interfaces/comment.interfaces';
 
 @Component({
@@ -12,13 +11,16 @@ export class PagePrincipalComponent implements OnInit {
 
   comments:Comment[]=[]
 
-  constructor(private commentsService:CommentsService) { }
+  constructor(private commentsService:CommentsService) { 
+
+  }
 
   ngOnInit(): void {
-    this.commentsService.getComments().subscribe((resp:Data)=>{      
-      this.comments=resp.comments;      
-      console.log(this.comments);
-    })
+    this.commentsService.getComments().subscribe(resp=>{
+      this.comments=resp;
+      this.commentsService.comments=resp;
+    });
+    
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from '../../interfaces/comment.interfaces';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interfaces';
-import { Data } from 'src/app/interfaces/data.interface';
+
 
 @Component({
   selector: 'app-comment',
@@ -38,8 +38,8 @@ export class CommentComponent implements OnInit {
   constructor(private userService : UserService) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe((resp:Data)=>{
-      this.currentUser=resp.currentUser
+    this.userService.getCurrentUser().subscribe((resp:User)=>{
+      this.currentUser=resp
     });     
   }
 

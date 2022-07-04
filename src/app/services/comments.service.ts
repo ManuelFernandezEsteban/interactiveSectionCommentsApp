@@ -1,20 +1,47 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Data } from '../interfaces/data.interface';
-import { Observable } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Comment } from '../interfaces/comment.interfaces';
 
 const url:string=environment.url;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
 
+  public comments:Comment[]=[];
+
   constructor(private http:HttpClient) { }
 
-  getComments():Observable<Data>{
-    
-    return this.http.get<Data>(url);
+  getLastId():number{
+    let mayor=0;
+    this.comments.forEach(comment => {
+      if (comment.id>mayor){
+        mayor=comment.id;
+      }
+    });
+    return mayor;
   }
+
+  insertComment(comment:Comment){
+    const idComment=this.getLastId();
+    this.comments.push(comment);
+  }
+
+
+
+  getComments(){
+
+    return this.http.get<Data>(url).pipe(
+      map(x=>x.comments)      
+    )
+
+  }
+
 }
+
+

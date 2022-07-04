@@ -38,8 +38,8 @@ export class ReplicComponent implements OnInit {
   constructor(private userService : UserService) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe((resp:Data)=>{
-      this.currentUser=resp.currentUser
+    this.userService.getCurrentUser().subscribe((resp:User)=>{
+      this.currentUser=resp
     }); 
   }
 

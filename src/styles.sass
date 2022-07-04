@@ -47,6 +47,8 @@ body
     @include column-center
     padding-bottom: 24px
     padding-top: 24px
+    padding-left: 12px
+    padding-right: 12px
     
 
 //nuevo comment
@@ -138,22 +140,64 @@ body
             i
                 @include column-center
                 
-    .wrapper-reply
+    .wrapper-btn-reply 
         @include row-center
         align-items: baseline
         color: $accent
         font-weight: 500
         cursor: pointer
+        
         span
             i
-                margin-right: 10px
+                margin-right: 3px
         &:hover     
 
-            span 
+            span
                 color: $back-ground-score      
                 i
                     svg
                         path
                             fill: $back-ground-score
+           
 
-      
+.wrapper-btn
+    @include row-center
+    align-items: baseline
+    color: $accent
+    font-weight: 500
+    cursor: pointer
+    span.blue
+        margin-left: 12px
+    span.red    
+        &:hover        
+            color: $hover-delete      
+            i
+                svg
+                    path
+                        fill: $hover-delete
+    span.blue
+        &:hover            
+            color: hsl(238, 40%, 75%)      
+            i
+                svg
+                    path
+                        fill: hsl(238, 40%, 75%)
+                            
+.wrapper-replies
+    border-left: 1px solid $line
+    padding-left: 16px      
+
+.you
+    background-color: $accent
+    color: $text-color-button
+    padding: 2px 4px
+    border-radius: 3px
+    font-size: 0.8rem
+    font-weight: 500
+
+.red
+    color: $delete
+.blue
+    color: $accent
+
+

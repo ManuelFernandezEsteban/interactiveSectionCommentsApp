@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interfaces';
-import { Data } from '../../interfaces/data.interface';
+import { Comment } from '../../interfaces/comment.interfaces';
+import { CommentsService } from '../../services/comments.service';
+
 
 
 @Component({
@@ -21,23 +23,34 @@ export class NuevoCommentComponent implements OnInit {
             };
   
   
-  constructor(private userService:UserService) { 
+  constructor(private userService:UserService,
+              private commentService:CommentsService) { 
   }
 
-  sendComment(){
-    //todo servicio de comments   
+  sendComment(){    
 
-    if (document.querySelector('#comment')?.textContent!=='') {
-      const textComment=document.querySelector('#comment')?.textContent;
-      //todo llamar al servicio para crear un nuevo comentario
+    if (document.querySelector('#comment')?.textContent!='') {
+      
+      const textComment= document.querySelector('#comment')?.textContent + '';
+      
+      const newComment:Comment ={
+        id: 0,
+        content: textComment,
+        createdAt: 'now',
+        score: 0,
+        user: this.user,
+        replies: []
+      } 
+      this.commentService.insertComment(newComment);
+      document.querySelector('#comment')!.textContent='';
     }
     
   }
 
   ngOnInit(): void {
     
-    this.userService.getCurrentUser().subscribe((resp:Data)=>{
-      this.user=resp.currentUser
+    this.userService.getCurrentUser().subscribe((resp:User)=>{
+      this.user=resp
     });   
   }
 
