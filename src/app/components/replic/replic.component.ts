@@ -11,6 +11,8 @@ import { Replic } from '../../interfaces/replic.interfaces';
 })
 export class ReplicComponent implements OnInit {
 
+  canReplie:boolean=false;
+
   @Input()replic:Replic={
     id:0,
     content:'',
@@ -42,5 +44,12 @@ export class ReplicComponent implements OnInit {
       this.currentUser=resp
     }); 
   }
+  public get canReplic() : boolean {
+    return this.canReplie
+  }
+  
 
+  openReplic(){
+    this.canReplie=!this.canReplie;
+  }
 }

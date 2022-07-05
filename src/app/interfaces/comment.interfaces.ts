@@ -9,5 +9,5 @@ export interface Comment {
     createdAt: string;
     score:     number;
     user:      User;
-    replies:   Replic[];
+    replies?:   Replic[];
 }

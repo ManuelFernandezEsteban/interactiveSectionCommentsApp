@@ -1,0 +1,17 @@
+
+<div class="box"  >
+    <div class="wrapper-new-comment">
+        <span #tweetElement id="replic" 
+              class="textarea" role="textbox" 
+              contenteditable>
+        </span>
+        <div class="box-inferior">
+            <div class="img-user">
+                <img src="{{currentUser.image.png}}" alt="{{currentUser.username}}">
+            </div>
+            <div class="wrapper-button">
+                <button class="button send" (click)="agregarReplica()">REPLY</button>
+            </div>
+        </div>
+    </div>
+</div>
