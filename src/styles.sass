@@ -31,6 +31,11 @@ $text-color-button:hsl(0, 0%, 100%)
     display: flex
     flex-direction: row
     align-items: center
+@mixin column-star
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    
     
 
 
@@ -205,11 +210,41 @@ body
     font-size: 0.8rem
     font-weight: 500
 
+.box-modal
+    @include column-star
+
+    h2
+        font-size: 1.2rem
+        font-weight: 700
+    .wrapper-button-modal
+        @include row-center
+        width: 100%
+        justify-content: space-between
+        button
+            border: none
+            font-weight: 500
+            text-transform: uppercase
+            color: $text-color-button
+            width: 120px
+            height: 50px
+            border-radius: 5px 
+            font-size: 1rem
+            cursor: pointer
+
+
 .red
     color: $delete
 .blue
     color: $accent
+.bg-red
+    background-color: $delete
+.bg-gray
+    background-color: $text
 .bold
     font-weight: 500
 
+.no-visible
+    display: none
+.visible
+    display: block
 

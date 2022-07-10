@@ -7,4 +7,5 @@ export interface Replic {
     score:      number;
     replyingTo: string;
     user:       User;
+    replies:    Replic[];
 }

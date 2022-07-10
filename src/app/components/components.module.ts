@@ -4,6 +4,8 @@ import { NuevoCommentComponent } from './nuevo-comment/nuevo-comment.component';
 import { CommentComponent } from './comment/comment.component';
 import { ReplicComponent } from './replic/replic.component';
 import { NewReplicComponent } from './new-replic/new-replic.component';
+import { AppConfimationDelete } from './confimation-delete/confimation-delete.component';
+
 
 @NgModule({
   declarations: [
@@ -11,9 +13,10 @@ import { NewReplicComponent } from './new-replic/new-replic.component';
     CommentComponent,
     ReplicComponent,
     NewReplicComponent,
+    AppConfimationDelete,
   ],
   imports: [
-    CommonModule,
+    CommonModule
   ],
   exports:[
     NuevoCommentComponent,

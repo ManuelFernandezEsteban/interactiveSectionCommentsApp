@@ -29,6 +29,7 @@ export class CommentsService {
 
   insertComment(comment:Comment){
     const idComment=this.getLastId();
+    comment.id=idComment+1;
     this.comments.push(comment);
   }
 

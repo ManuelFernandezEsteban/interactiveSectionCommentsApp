@@ -27,7 +27,8 @@ export class NuevoCommentComponent implements OnInit {
               private commentService:CommentsService) { 
   }
 
-  sendComment(){    
+  sendComment(){   
+
 
     if (document.querySelector('#comment')?.textContent!='') {
       
@@ -41,6 +42,7 @@ export class NuevoCommentComponent implements OnInit {
         user: this.user,
         replies: []
       } 
+      
       this.commentService.insertComment(newComment);
       document.querySelector('#comment')!.textContent='';
     }
