@@ -1,8 +1,11 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Data } from 'src/app/interfaces/data.interface';
 import { User } from 'src/app/interfaces/user.interfaces';
 import { UserService } from 'src/app/services/user.service';
 import { Replic } from '../../interfaces/replic.interfaces';
+import { AppConfimationDelete } from '../confimation-delete/confimation-delete.component';
+import { Comment } from '../../interfaces/comment.interfaces';
 
 @Component({
   selector: 'app-replic',
@@ -17,6 +20,22 @@ export class ReplicComponent implements OnInit {
   isEditClicked:boolean=false;
   canReplie:boolean=false;
   textComment:string='';
+
+  @Input()comment:Comment={
+    id:0,
+    content:'',
+    createdAt:'',
+    score:0,
+    user:{
+      username:'',
+      image:
+         {  
+           png:'',
+           webp:''
+         } 
+     },    
+    replies:[],
+  }
 
   @Input()replic:Replic={
     id:0,
@@ -43,7 +62,7 @@ export class ReplicComponent implements OnInit {
        } 
    }
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService,public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((resp:User)=>{
@@ -69,8 +88,7 @@ export class ReplicComponent implements OnInit {
 
   toggleEdit(){
     this.isEditClicked=!this.isEditClicked;
-    this.textComment=this.replic.content; 
-    
+    this.textComment=this.replic.content;   
    
   }
 
@@ -98,5 +116,27 @@ export class ReplicComponent implements OnInit {
       this.toggleEdit();      
     }
     
+  }
+
+  openDialog(): void {
+    
+    const dialogRef = this.dialog.open(AppConfimationDelete,{
+      width:'351px'  
+    });
+
+    dialogRef.afterClosed().subscribe((result)=>{
+    
+      if (result){
+        const position= this.comment.replies?.indexOf(this.replic) || 0;
+        this.comment.replies?.splice(position,1);
+      }
+      
+    })
+
+  
+  }
+
+  deleteReplic(){
+    this.openDialog()
   }
 }

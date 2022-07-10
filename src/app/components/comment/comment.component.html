@@ -5,7 +5,7 @@
         
         <span class="you" *ngIf="userDistinct">you</span>
         
-        <span class="createdAt">{{comment.createdAt}}</span>
+        <span class="createdAt">{{comment.createdAt | createdAt}}</span>
         
     </div>
     <div class="wrapper-comment">
@@ -69,7 +69,7 @@
 
 <div class="wrapper-replies">
     <ng-container *ngFor="let replie of comment.replies">
-        <app-replic [replic]="replie"></app-replic>
+        <app-replic [replic]="replie" [comment]="comment"></app-replic>
     </ng-container>
 </div>
 

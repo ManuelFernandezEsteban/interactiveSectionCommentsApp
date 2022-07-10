@@ -38,10 +38,12 @@ export class NewReplicComponent implements OnInit {
         replyingTo=this.comment.user.username;
       }
 
+      const createdAt = new Date().getTime()+'';
+
       const newReplic:Replic ={
         id: id+1,
         content: textComment,
-        createdAt: 'now',
+        createdAt: createdAt,
         score: 0,
         user:this.currentUser,
         replies:[],

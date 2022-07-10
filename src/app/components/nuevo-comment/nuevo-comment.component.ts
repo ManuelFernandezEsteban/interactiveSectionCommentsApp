@@ -33,11 +33,12 @@ export class NuevoCommentComponent implements OnInit {
     if (document.querySelector('#comment')?.textContent!='') {
       
       const textComment= document.querySelector('#comment')?.textContent + '';
-      
+      const createdAt = new Date().getTime()+'';
+      console.log(createdAt)
       const newComment:Comment ={
         id: 0,
         content: textComment,
-        createdAt: 'now',
+        createdAt: createdAt,
         score: 0,
         user: this.user,
         replies: []

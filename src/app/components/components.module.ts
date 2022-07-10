@@ -5,6 +5,7 @@ import { CommentComponent } from './comment/comment.component';
 import { ReplicComponent } from './replic/replic.component';
 import { NewReplicComponent } from './new-replic/new-replic.component';
 import { AppConfimationDelete } from './confimation-delete/confimation-delete.component';
+import { CreatedAtPipe } from '../pipes/created-at.pipe';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AppConfimationDelete } from './confimation-delete/confimation-delete.co
     ReplicComponent,
     NewReplicComponent,
     AppConfimationDelete,
+    CreatedAtPipe
   ],
   imports: [
     CommonModule

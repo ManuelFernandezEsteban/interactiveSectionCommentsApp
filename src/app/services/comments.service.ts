@@ -33,6 +33,11 @@ export class CommentsService {
     this.comments.push(comment);
   }
 
+  deleteComment(comment:Comment){
+    console.log('Delete', comment);
+    const position =  this.comments.indexOf(comment);
+    this.comments.splice(position,1);
+  }
 
 
   getComments(){

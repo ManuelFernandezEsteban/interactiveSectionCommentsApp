@@ -2,10 +2,9 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Comment } from '../../interfaces/comment.interfaces';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interfaces';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { AppConfimationDelete } from '../confimation-delete/confimation-delete.component';
-
-
+import { CommentsService } from '../../services/comments.service';
 
 @Component({
   selector: 'app-comment',
@@ -13,6 +12,8 @@ import { AppConfimationDelete } from '../confimation-delete/confimation-delete.c
   styleUrls: ['./comment.component.sass']
 })
 export class CommentComponent implements OnInit {
+
+  confirmation:boolean=false;
 
   @ViewChild('text')
   text!: ElementRef;
@@ -45,16 +46,25 @@ export class CommentComponent implements OnInit {
        } 
    };
 
-  constructor(private userService : UserService,public dialog:MatDialog) { 
+  constructor(private userService : UserService,
+              private commentService:CommentsService,
+              public dialog:MatDialog) { 
     
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog(): void {
     
-    this.dialog.open(AppConfimationDelete,{
-      width:'351px'
-  
+    const dialogRef = this.dialog.open(AppConfimationDelete,{
+      width:'351px'  
     });
+
+    dialogRef.afterClosed().subscribe((result)=>{
+    
+      if (result){
+        this.commentService.deleteComment(this.comment);
+      }
+      
+    })
 
   
   }
@@ -121,8 +131,8 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment(){
-    console.log('hola')
-    this.openDialog('0ms', '0ms');
+    
+    this.openDialog();
     
 
   }
