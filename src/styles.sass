@@ -20,6 +20,8 @@ $line:hsl(223, 19%, 93%)
 $back-ground-card:hsl(0, 0%, 100%)
 $text-color-button:hsl(0, 0%, 100%)
 
+$break-point-tablet:768px
+
 //Mixins
 
 @mixin column-center
@@ -47,6 +49,8 @@ $text-color-button:hsl(0, 0%, 100%)
 app-root
     width: 100%
     height: 100%
+    @media (min-width: $break-point-tablet)
+        width: 70%
 body
     background-color: $back-ground    
     @include column-center
@@ -63,6 +67,9 @@ body
     border-radius: 5px    
     padding: 16px
     margin-top: 16px
+    @media (min-width: $break-point-tablet)
+       // display: flex
+                                
 
 
 .textarea
@@ -115,6 +122,8 @@ body
         font-weight: 700    
     .createdAt
         color: $text  
+    @media (min-width: $break-point-tablet)
+        grid-area: user
 .wrapper-comment
     margin-top: 10px
     &:last-child
@@ -122,6 +131,8 @@ body
         span
             color: $text  
             line-height: 1.4rem
+    @media (min-width: $break-point-tablet)
+        grid-area: comment
 .wrapper-btn-reply,.wrapper-btn
     button
         background-color: transparent
@@ -173,6 +184,8 @@ body
                     svg
                         path
                             fill: $back-ground-score
+    @media (min-width: $break-point-tablet)
+        grid-area: buttons                        
            
 
 .wrapper-btn
