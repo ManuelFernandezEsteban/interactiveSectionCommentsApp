@@ -1,16 +1,17 @@
-<div class="box">
+<div class="box-new">
     <div class="wrapper-new-comment">
+        <div class="img-user">
+                <img src="{{user.image.png}}" alt="{{user.username}}">
+            </div>
         <span #tweetElement id="comment" 
               class="textarea" role="textbox" 
               contenteditable>
         </span>
-        <div class="box-inferior">
-            <div class="img-user">
-                <img src="{{user.image.png}}" alt="{{user.username}}">
-            </div>
+        
+            
             <div class="wrapper-button">
                 <button class="button send" (click)="sendComment()">SEND</button>
             </div>
-        </div>
+        
     </div>
 </div>
