@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+
 import { User } from '../../interfaces/user.interfaces';
 import { Comment } from '../../interfaces/comment.interfaces';
-import { CommentsService } from '../../services/comments.service';
+
+import { DataService } from 'src/app/services/data.service';
 
 
 
@@ -23,8 +24,7 @@ export class NuevoCommentComponent implements OnInit {
             };
   
   
-  constructor(private userService:UserService,
-              private commentService:CommentsService) { 
+  constructor(private dataService:DataService) { 
   }
 
   sendComment(){   
@@ -44,7 +44,7 @@ export class NuevoCommentComponent implements OnInit {
         replies: []
       } 
       
-      this.commentService.insertComment(newComment);
+      this.dataService.insertComment(newComment);
       document.querySelector('#comment')!.textContent='';
     }
     
@@ -52,7 +52,7 @@ export class NuevoCommentComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.userService.getCurrentUser().subscribe((resp:User)=>{
+    this.dataService.getCurrentUser().subscribe((resp:User)=>{
       this.user=resp
     });   
   }

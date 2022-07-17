@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommentsService } from '../../services/comments.service';
+
 import { Comment } from '../../interfaces/comment.interfaces';
+import { DataService } from '../../services/data.service';
 
 
 
@@ -14,14 +15,14 @@ export class PagePrincipalComponent implements OnInit {
 
   comments:Comment[]=[]
 
-  constructor(private commentsService:CommentsService) { 
+  constructor(private dataService:DataService) { 
 
   }
 
   
   
   ngOnInit(): void {
-    this.commentsService.getComments().subscribe(resp=>{
+    this.dataService.getComments().subscribe(resp=>{
       this.comments=resp;
       this.comments.sort(function(a,b){
         if (a.score>b.score){
@@ -33,7 +34,7 @@ export class PagePrincipalComponent implements OnInit {
         return 1
         
       })
-      this.commentsService.comments=resp;
+      this.dataService.comments=resp;
     });
     
   }

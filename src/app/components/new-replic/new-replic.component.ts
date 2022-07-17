@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../../interfaces/user.interfaces';
 import { Comment } from '../../interfaces/comment.interfaces';
 import { Replic } from 'src/app/interfaces/replic.interfaces';
-import { AstTransformer } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-new-replic',

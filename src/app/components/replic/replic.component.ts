@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Replic } from '../../interfaces/replic.interfaces';
 import { AppConfimationDelete } from '../confimation-delete/confimation-delete.component';
 import { Comment } from '../../interfaces/comment.interfaces';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-replic',
@@ -62,10 +63,10 @@ export class ReplicComponent implements OnInit {
        } 
    }
 
-  constructor(private userService : UserService,public dialog:MatDialog) { }
+  constructor(private dataService : DataService,public dialog:MatDialog) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe((resp:User)=>{
+    this.dataService.getCurrentUser().subscribe((resp:User)=>{
       this.currentUser=resp
     }); 
   }

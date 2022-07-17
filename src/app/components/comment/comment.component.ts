@@ -1,10 +1,11 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Comment } from '../../interfaces/comment.interfaces';
-import { UserService } from '../../services/user.service';
+
 import { User } from '../../interfaces/user.interfaces';
 import {MatDialog} from '@angular/material/dialog';
 import { AppConfimationDelete } from '../confimation-delete/confimation-delete.component';
-import { CommentsService } from '../../services/comments.service';
+
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-comment',
@@ -46,8 +47,7 @@ export class CommentComponent implements OnInit {
        } 
    };
 
-  constructor(private userService : UserService,
-              private commentService:CommentsService,
+  constructor(private dataService : DataService,              
               public dialog:MatDialog) { 
     
   }
@@ -61,7 +61,7 @@ export class CommentComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result)=>{
     
       if (result){
-        this.commentService.deleteComment(this.comment);
+        this.dataService.deleteComment(this.comment);
       }
       
     })
@@ -76,7 +76,7 @@ export class CommentComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe((resp:User)=>{
+    this.dataService.getCurrentUser().subscribe((resp:User)=>{
       this.currentUser=resp
     });    
     
