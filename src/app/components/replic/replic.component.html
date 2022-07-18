@@ -10,7 +10,9 @@
         
     </div>
     <div class="wrapper-comment">
-        <span class="blue bold">@{{replic.replyingTo}}</span><span>{{replic.content}}</span>
+
+        <span class="blue bold">@{{replic.replyingTo}}</span>
+        <span [ngClass]="isNotEditMode()">{{replic.content}}</span>
         <div class="wrapper-new-comment" [ngClass]="isEditMode()">
             <span #text 
                   class="textarea" role="textbox" 

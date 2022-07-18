@@ -48,12 +48,14 @@ export class DataService {
     const idComment=this.getLastId();
     comment.id=idComment+1;
     this.comments.push(comment);
+    this.dataPersist();
   }
 
   deleteComment(comment:Comment){
-    console.log('Delete', comment);
+    
     const position =  this.comments.indexOf(comment);
     this.comments.splice(position,1);
+    this.dataPersist();
   }
 
 
@@ -63,6 +65,14 @@ export class DataService {
       map(x=>x.comments)      
     )
 
+  }
+
+  dataPersist(){    
+
+    const data:Data = {currentUser:this.currentUser,
+                       comments:this.comments}
+    const dataString:string = JSON.stringify(data);
+    localStorage.setItem('comments',dataString);
   }
 
 }

@@ -78,6 +78,7 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getCurrentUser().subscribe((resp:User)=>{
       this.currentUser=resp
+      this.dataService.currentUser=resp;
     });    
     
   }
@@ -85,20 +86,27 @@ export class CommentComponent implements OnInit {
   modificarScore(i:number){
    
     this.comment.score=this.comment.score+i;
-
     if (this.comment.score<0) {
       this.comment.score=0;
     }
-
+    this.dataService.dataPersist();
   }
 
   toggleEdit(){
     this.isEditClicked=!this.isEditClicked;
     this.textComment=this.comment.content; 
-    console.log(this.isEditClicked)
+  
    
   }
-
+  isNotEditMode():string{
+    
+    if ((this.userDistinct)&&(this.isEditClicked)) {
+      return 'no-visible';
+    }else{
+      return 'visible';
+    }
+    
+  }
   isEditMode():string{
     
     if ((this.userDistinct)&&(this.isEditClicked)) {
@@ -118,7 +126,7 @@ export class CommentComponent implements OnInit {
       this.comment.content=this.textComment;      
       this.toggleEdit();      
     }
-    
+    this.dataService.dataPersist();
   }
   
   public get canReplic() : boolean {

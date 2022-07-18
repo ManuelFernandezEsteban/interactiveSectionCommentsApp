@@ -9,7 +9,7 @@
         
     </div>
     <div class="wrapper-comment">
-        <span>{{comment.content}}</span>
+        <span [ngClass]="isNotEditMode()">{{comment.content}}</span>
         <div class="wrapper-new-comment" [ngClass]="isEditMode()">
             <span #text 
                   class="textarea" role="textbox" 

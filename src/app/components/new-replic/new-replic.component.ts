@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../../interfaces/user.interfaces';
 import { Comment } from '../../interfaces/comment.interfaces';
 import { Replic } from 'src/app/interfaces/replic.interfaces';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class NewReplicComponent implements OnInit {
   @Input()comment!:Comment;
   @Output()enviada=new EventEmitter<boolean>()
 
-  constructor() { }
+  constructor(private dataService:DataService ) { }
 
   ngOnInit(): void {
   }
@@ -58,10 +59,8 @@ export class NewReplicComponent implements OnInit {
       }else{
         this.replies!.push(newReplic);
       } 
-
-      
-      document.querySelector('#replic')!.textContent='';
-      console.log(this.replie)
+      this.dataService.dataPersist();
+      document.querySelector('#replic')!.textContent='';      
       this.enviada.emit(true);
     }
   }

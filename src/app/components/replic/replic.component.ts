@@ -80,7 +80,7 @@ export class ReplicComponent implements OnInit {
     if (this.replic.score<0) {
       this.replic.score=0;
     }
-
+    this.dataService.dataPersist();
   }
 
   public get userDistinct() : boolean {
@@ -95,6 +95,16 @@ export class ReplicComponent implements OnInit {
 
   openReplic(){
     this.canReplie=!this.canReplie;
+  }
+
+  isNotEditMode():string{
+    
+    if ((this.userDistinct)&&(this.isEditClicked)) {
+      return 'no-visible';
+    }else{
+      return 'visible';
+    }
+    
   }
 
   isEditMode():string{
@@ -114,7 +124,8 @@ export class ReplicComponent implements OnInit {
     if (this.textComment!='') {
 
       this.replic.content=this.textComment;      
-      this.toggleEdit();      
+      this.toggleEdit();  
+      this.dataService.dataPersist();
     }
     
   }
